@@ -1,0 +1,9 @@
+[submodule "godwoken"]
+	path = godwoken
+	url = https://github.com/nervosnetwork/godwoken.git
+[submodule "lumos"]
+	path = lumos
+	url = https://github.com/nervosnetwork/lumos
+[submodule "godwoken-examples"]
+	path = godwoken-examples
+	url = https://github.com/nervosnetwork/godwoken-examples.git
