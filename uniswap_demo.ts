@@ -4,7 +4,7 @@ const LUMOS_CONFIG_FILE='/code/config/lumos-config.json';
 const PRIVATE_KEY = '0xa6b023fec4fc492c23c0e999ab03b01a6ca5524a3560725887a8de4362f9c9cc';
 
 async function main() {
-    console.log('hello');
+    console.log('---begin demo---');
     deposit();
     createCreatorAccount(PRIVATE_KEY, '0x9346b517fd137a58d8e266ed7cbb27ba4f693bc792118c2744c3b30b1fcdd655', '2');
 }
