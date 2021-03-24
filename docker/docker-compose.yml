@@ -4,29 +4,21 @@ services:
     image: tockb/ckb-dev:v0.39.2
     ports:
       - "8114:8114"
-  ckb-indexer:
-    image: tockb/ckb-indexer:ab57116
-    ports:
-      - "8116:8116"
-    environment:
-      - RUST_LOG=info
-    command: ckb-indexer -s /tmp/ckb-indexer-test -c http://ckb:8114 -l 0.0.0.0:8116
-    depends_on:
-      - ckb
+  # ckb-indexer:
+  #   image: tockb/ckb-indexer:ab57116
+  #   ports:
+  #     - "8116:8116"
+  #   environment:
+  #     - RUST_LOG=info
+  #   command: ckb-indexer -s /tmp/ckb-indexer-test -c http://ckb:8114 -l 0.0.0.0:8116
+  #   depends_on:
+  #     - ckb
   godwoken:
-    image: godwoken:dev
+    image: huwenchao/godwoken:dev
     volumes:
       - ../:/code
       - cargo-cache:/usr/local/cargo
-    # command: tail -F anything
     command: bash /code/entrypoint.sh
-    # volumes:
-    #   - type: volume
-    #     source: geth-dag
-    #     target: /root/.ethash
-    #   - type: bind
-    #     source: ./geth
-    #     target: /config
     ports:
       - 8119:8119
     depends_on:
