@@ -14,25 +14,25 @@ const main = async () => {
     // await deposit();
     // await createCreatorAccount(PRIVATE_KEY, '0x9346b517fd137a58d8e266ed7cbb27ba4f693bc792118c2744c3b30b1fcdd655', '2');
 
-    // 1. WETH  -> account id : 5
+    // // 1. WETH  -> account id : 5
     // log(`\r\n1. deploy ${calldataVec[0].name}`)
     // await deploy('4', calldataVec[0].calldata);
-
-    // 2. Factory  -> account id : 6
+    //
+    // // 2. Factory  -> account id : 6
     // log(`\r\n2. deploy ${calldataVec[1].name}`)
     // await deploy('4', calldataVec[1].calldata);
-
-    // 3. Router  -> account id : 7
-    log(`\r\n3. deploy ${calldataVec[2].name}`)
-    await deploy('4', calldataVec[2].calldata);
+    //
+    // // 3. Router  -> account id : 7
+    // log(`\r\n3. deploy ${calldataVec[2].name}`)
+    // await deploy('4', calldataVec[2].calldata);
 
     // 4. MockUsdt  -> account id : 8
-    log(`\r\n4. deploy ${calldataVec[3].name}`)
-    await deploy('4', calldataVec[3].calldata);
+    // log(`\r\n4. deploy ${calldataVec[3].name}`)
+    // await deploy('4', calldataVec[3].calldata);
 
     // 5. MockBTC -> account id: 9
-    log(`\r\n5. deploy ${calldataVec[4].name}`)
-    await deploy('4', calldataVec[4].calldata);
+    // log(`\r\n5. deploy ${calldataVec[4].name}`)
+    // await deploy('4', calldataVec[4].calldata);
 
 }
 

@@ -10,7 +10,7 @@ docker-compose exec godwoken bash
 
 # in docker
 cd /code && make init-uniswap-demo && export LUMOS_CONFIG_FILE=/code/config/lumos-config.json
-ts-node-dev --respawn --transpile-only storage_demo.ts
+ts-node-dev --transpile-only uniswap_demo.ts
 ```
 
 ## Interact with Godwoken Example
