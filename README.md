@@ -5,6 +5,9 @@ make install
 
 cd docker && docker-compose up
 
+# watch log of godwoken
+docker-compose logs -f godwoken
+
 # interact with godwoken
 docker-compose exec godwoken bash
 

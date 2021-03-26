@@ -1,66 +1,59 @@
 import {fullAddressInfoWithData} from "./lumos/packages/helpers/tests/addresses";
-import calldataVec from "./1.calldata.json";
-
-
+import calldataVec from "./error-permission.calldata.json";
 const shell = require('shelljs');
-
-const LUMOS_CONFIG_FILE='/code/config/lumos-config.json';
 const PRIVATE_KEY = '0xa6b023fec4fc492c23c0e999ab03b01a6ca5524a3560725887a8de4362f9c9cc';
 const log = console.log.bind(console)
 
 
 const main = async () => {
     log('\r\n---begin uniswap demo---');
-    await deposit();
+    await deposit();  // deposit to account id 2
+    // creator account id == 4
     await createCreatorAccount(PRIVATE_KEY, '0x9346b517fd137a58d8e266ed7cbb27ba4f693bc792118c2744c3b30b1fcdd655', '2');
 
-    // // 1. WETH  -> account id : 5
-    log(`\r\n1. deploy ${calldataVec[0].name}`)
-    await deploy('4', calldataVec[0].calldata);
-    //
-    // // 2. Factory  -> account id : 6
-    log(`\r\n2. deploy ${calldataVec[1].name}`)
-    await deploy('4', calldataVec[1].calldata);
-    //
-    // // 3. Router  -> account id : 7
-    log(`\r\n3. deploy ${calldataVec[2].name}`)
-    await deploy('4', calldataVec[2].calldata);
 
-    // 4. MockUsdt  -> account id : 8
-    log(`\r\n4. deploy ${calldataVec[3].name}`)
-    await deploy('4', calldataVec[3].calldata);
+    let index
 
-    // 5. MockBTC -> account id: 9
-    log(`\r\n5. deploy ${calldataVec[4].name}`)
-    await deploy('4', calldataVec[4].calldata);
+    // 1. deploy usdt
+    index = 0
+    log(`\r\n${index}. deploy ${calldataVec[index].name}`)
+    await deploy('4', calldataVec[index].calldata);
 
-    // 6.
-    log(`\r\n6. ${calldataVec[5].name}`)
-    await callSet('9', calldataVec[5].calldata)
+    // 2. deploy demo
+    index = 1
+    log(`\r\n${index}. deploy ${calldataVec[index].name}`)
+    await deploy('4', calldataVec[index].calldata);
 
-    // 7.
-    log(`\r\n7. ${calldataVec[6].name}`)
-    await callSet('8', calldataVec[6].calldata)
+    // 3. user approve demo, MockUSDT, MaxUint256
+    index = 2
+    log(`\r\n${index}. ${calldataVec[index].name}`)
+    await callSet(`${calldataVec[index].targetAccountId}`, calldataVec[index].calldata)
 
-    // 8.
-    log(`\r\n8. ${calldataVec[7].name}`)
-    await callSet('7', calldataVec[7].calldata)
+    // 4. call demo testTransferFrom
+    index = 3
+    log(`\r\n${index}. ${calldataVec[index].name}`)
+    await callSet(`${calldataVec[index].targetAccountId}`, calldataVec[index].calldata)
 
-    // 9.
-    log(`\r\n9. ${calldataVec[9].name}`)
-    await callSet('8', calldataVec[9].calldata)
+    // 5. " direct transferFrom, user1 -> demo  998", expect error
+    index = 4
+    log(`\r\n${index}. ${calldataVec[index].name}`)
+    await callSet(`${calldataVec[index].targetAccountId}`, calldataVec[index].calldata)
 
-    // 10.
-    log(`\r\n10. ${calldataVec[10].name}`)
-    await callSet('8', calldataVec[10].calldata)
+    // 6. " direct transferFrom, user1 -> demo  998", expect error
+    index = 5
+    log(`\r\n${index}. ${calldataVec[index].name}`)
+    await callSet(`${calldataVec[index].targetAccountId}`, calldataVec[index].calldata)
 
-    // balanceOf
-    log(`\r\n11. ${calldataVec[11].name}`)
-    await callGet('8', calldataVec[11].calldata)
 
-    // balanceOf
-    log(`\r\n11. ${calldataVec[12].name}`)
-    await callGet('8', calldataVec[12].calldata)
+    // // 5. balanceOf
+    index++
+    log(`\r\n${index}. ${calldataVec[index].name}`)
+    await callGet(`${calldataVec[index].targetAccountId}`, calldataVec[index].calldata)
+
+    // // 6. balanceOf
+    index++
+    log(`\r\n${index}. ${calldataVec[index].name}`)
+    await callGet(`${calldataVec[index].targetAccountId}`, calldataVec[index].calldata)
 }
 
 const deposit = async (pk = PRIVATE_KEY, amount = '40000000000') => {
