@@ -24,7 +24,7 @@
     "index": 3,
     "fromAccountId": 2,
     "targetAccountId": 6,
-    "name": "transferFrom, (user -> creator, 999)",
+    "name": "user call demoErrorPermission.testTransferFrom, params: (user address, demoErrorPermission address, 999)",
     "calldata": "0x05a37e9a0000000000000000000000000500000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003e7"
   },
   {

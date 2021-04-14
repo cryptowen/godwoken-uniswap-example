@@ -38,9 +38,16 @@ yarn global add ts-node-dev typescript
 cd ${PROJECT_DIR}/godwoken
 cargo install moleculec --version 0.6.1
 cargo build
+
+cd packages/godwoken
+yarn global add neon-cli
+neon build
+cd ../../
+
 yarn
 yarn workspace @ckb-godwoken/base tsc
 yarn workspace @ckb-godwoken/tools tsc
+
 
 # deploy
 export TOP=${PROJECT_DIR}/config
